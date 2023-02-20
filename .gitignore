@@ -1,0 +1,57 @@
+*.iml
+.gradle/*
+.idea/*
+# intellij gradle local file
+local.properties
+build/*
+logs/*
+out/*
+
+target/*
+lshop-pricing.iml
+lshop-pricing.iws
+lshop-pricing.ipr
+
+.lshop/plugins/**/build
+
+work/.DS_Store
+
+config/*
+excludedsites.bin
+sitehierarchy.bin
+BrowserPreferredLocaleConfig.properties.xml
+DefaultSiteidConfig.properties.xml
+NamesForDisplayConfig.properties.xml
+SiteDetailsConfig.properties.xml
+SiteIDOverrideLangIDConfig.properties.xml
+SupportedCurrenciesConfig.properties.xml
+SiteDetailsFromTpidEapidConfig.properties.xml
+SiteIdAndHostnameConfig.properties.xml
+FormatConfig.properties.xml
+OptInPrivacyConfig.properties.xml
+PrefixForFullSiteName.config.xml
+PriceFormatConfig.properties.xml
+UIBrandConfig.properties.xml
+excludedsites.json
+hierarchy/*
+s3-metadata/*
+sitehierarchy.json
+browser.supported.locales.config.xml
+expsite-metadata/*
+formats.zip
+hostnames.config.xml
+
+${application.home}/logs/*log
+
+# mac
+.DS_Store
+# local override for docker-compose
+docker-compose.override.yml
+.java-version
+
+# helm
+bin/*
+.shelf/*
+
+# secret file
+secrets.json
