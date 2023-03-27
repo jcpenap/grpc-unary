@@ -9,6 +9,3 @@ fun main(args: Array<String>) {
     server.start()
     server.awaitTermination()
 }
-
-class GrpcServer {
-}
