@@ -10,7 +10,7 @@ class BackService: BankServiceGrpc.BankServiceImplBase() {
                             responseObserver: StreamObserver<Balance>?) {
         val accountNumber = request?.accountNumber
         val balance = Balance.newBuilder()
-            .setAmount(accountNumber?.let { it * 10 } ?: 0)
+            .setAmount(AccountDatabase.getBalance(accountNumber) ?: 0)
             .build()
         responseObserver?.onNext(balance)
         responseObserver?.onCompleted()
