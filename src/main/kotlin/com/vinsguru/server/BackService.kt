@@ -23,10 +23,10 @@ class BackService: BankServiceGrpc.BankServiceImplBase() {
         val accountNumber = request?.accountNumber ?: 0
         val amount = request?.amount ?: 0
         val balance = AccountDatabase.getBalance(accountNumber)
-        AccountDatabase.deductBalance(accountNumber, 10)
         for (i in 0 .. (amount/10)) {
             val money = Money.newBuilder().setValue(10).build()
             responseObserver?.onNext(money)
+            AccountDatabase.deductBalance(accountNumber, 10)
             Thread.sleep(1000)
         }
         responseObserver?.onCompleted()
