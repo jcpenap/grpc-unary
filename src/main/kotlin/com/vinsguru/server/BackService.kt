@@ -5,6 +5,7 @@ import com.vinsguru.models.BalanceCheckRequest
 import com.vinsguru.models.BankServiceGrpc
 import com.vinsguru.models.WithdrawRequest
 import com.vinsguru.models.Money
+import io.grpc.Status
 import io.grpc.stub.StreamObserver
 
 class BackService: BankServiceGrpc.BankServiceImplBase() {
@@ -22,7 +23,15 @@ class BackService: BankServiceGrpc.BankServiceImplBase() {
 
         val accountNumber = request?.accountNumber ?: 0
         val amount = request?.amount ?: 0
-        val balance = AccountDatabase.getBalance(accountNumber)
+        val balance = AccountDatabase.getBalance(accountNumber) ?: 0
+
+        if(balance < amount) {
+            val status = Status.FAILED_PRECONDITION.withDescription("No enough money. You have only $balance")
+            responseObserver?.onError(status.asRuntimeException())
+            return
+        }
+
+        // all the validations passed
         for (i in 0 .. (amount/10)) {
             val money = Money.newBuilder().setValue(10).build()
             responseObserver?.onNext(money)
