@@ -2,6 +2,7 @@ package com.vinsguru.client
 
 import com.vinsguru.models.BalanceCheckRequest
 import com.vinsguru.models.BankServiceGrpc
+import com.vinsguru.models.WithdrawRequest
 import io.grpc.ManagedChannelBuilder
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
@@ -27,6 +28,16 @@ class BankClientTest {
             .build()
         val balance = this.blockingStub.getBalance(balanceCheckRequest)
         println("Received: " + balance.amount)
+    }
+
+    @Test
+    fun withdrawTest() {
+        val request = WithdrawRequest.newBuilder()
+            .setAccountNumber(7)
+            .setAmount(10)
+            .build()
+        this.blockingStub.withdraw(request)
+            .forEachRemaining { money -> println("Received: ${money.value}") }
     }
 
 }
