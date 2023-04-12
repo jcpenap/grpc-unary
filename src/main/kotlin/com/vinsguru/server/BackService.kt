@@ -1,10 +1,6 @@
 package com.vinsguru.server
 
-import com.vinsguru.models.Balance
-import com.vinsguru.models.BalanceCheckRequest
-import com.vinsguru.models.BankServiceGrpc
-import com.vinsguru.models.WithdrawRequest
-import com.vinsguru.models.Money
+import com.vinsguru.models.*
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
 
@@ -40,5 +36,9 @@ class BackService: BankServiceGrpc.BankServiceImplBase() {
         }
         responseObserver?.onCompleted()
 
+    }
+
+    override fun cashDeposit(responseObserver: StreamObserver<Balance>): StreamObserver<DepositRequest> {
+        return CashStreamingRequest(responseObserver)
     }
 }
