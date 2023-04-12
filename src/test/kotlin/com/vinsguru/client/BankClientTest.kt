@@ -8,6 +8,7 @@ import io.grpc.ManagedChannelBuilder
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
+import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -46,12 +47,13 @@ class BankClientTest {
 
     @Test
     fun withdrawAsyncTest() {
+        val latch = CountDownLatch(1)
         val request = WithdrawRequest.newBuilder()
             .setAccountNumber(10)
             .setAmount(50)
             .build()
-        bankServiceStub.withdraw(request, MoneyStreamingResponse())
-        Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS)
+        bankServiceStub.withdraw(request, MoneyStreamingResponse(latch))
+        latch.await()
     }
 
 }
