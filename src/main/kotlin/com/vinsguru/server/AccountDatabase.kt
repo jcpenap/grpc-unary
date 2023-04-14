@@ -19,5 +19,9 @@ class AccountDatabase {
             return MAP.toMutableMap()
                 .computeIfPresent(accountId){ _, v -> v - amount }
         }
+
+        fun printAccountDetails() {
+            println(MAP)
+        }
     }
 }
