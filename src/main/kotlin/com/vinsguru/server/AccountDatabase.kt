@@ -4,7 +4,7 @@ class AccountDatabase {
     companion object {
         private val MAP = generateSequence(1) { it + 1 }
             .take(10)
-            .map { it to it * 10 }.toMap()
+            .map { it to it * 100 }.toMap()
 
         fun getBalance(accountId: Int?): Int? {
             return MAP[accountId]
