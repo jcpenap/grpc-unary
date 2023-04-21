@@ -1,6 +1,5 @@
 package com.vinsguru.client
 
-import com.vinsguru.models.BankServiceGrpc
 import com.vinsguru.models.TransferRequest
 import com.vinsguru.models.TransferServiceGrpc
 import io.grpc.ManagedChannelBuilder

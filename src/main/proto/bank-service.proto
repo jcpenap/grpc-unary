@@ -25,7 +25,7 @@ message DepositRequest {
 }
 
 service BankService {
-  //unary
+    //unary
   rpc getBalance(BalanceCheckRequest) returns (Balance);
 
   // server-side streaming
